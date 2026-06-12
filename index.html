@@ -4,103 +4,782 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inteligência Mil Grau</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #e0ffe0; /* Fundo verde claro */
-            min-height: 100vh;
-        }
-        .content-wrapper {
-            max-width: 800px;
-            width: 100%;
-            background-color: #ffffff;
-            padding: 2rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-        header {
-            background-color: #007f00; /* Verde escuro */
-            color: #fff;
-            padding: 1rem;
-            text-align: center;
-            border-radius: 8px 8px 0 0;
-        }
-        h2 {
-            color: #007f00;
-        }
-        p, ul {
-            color: #333;
-            line-height: 1.6;
-        }
-        a {
-            color: #ffd700; /* Amarelo dourado */
-            text-decoration: none;
-            font-weight: bold;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        footer {
-            background-color: #007f00;
-            color: white !important;
-            text-align: center;
-            padding: 1rem;
-            border-radius: 0 0 8px 8px;
-            margin-top: 1rem;
+        :root {
+            --verde-escuro: #006400;
+            --verde: #228B22;
+            --verde-claro: #32CD32;
+            --verde-agua: #90EE90;
+            --amarelo: #FFD700;
+            --amarelo-claro: #FFEC8B;
+            --branco: #ffffff;
+            --cinza: #f8f9fa;
+            --texto: #2d3436;
+            --sombra: 0 10px 30px rgba(0, 100, 0, 0.15);
+            --sombra-hover: 0 20px 40px rgba(0, 100, 0, 0.25);
         }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--texto);
+            line-height: 1.7;
+            background: linear-gradient(135deg, #f0fff0 0%, #fffff0 50%, #e8f5e8 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Elementos decorativos de fundo */
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.08;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape:nth-child(1) {
+            width: 400px;
+            height: 400px;
+            background: var(--verde);
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            background: var(--amarelo);
+            bottom: 10%;
+            left: -80px;
+            animation-delay: -5s;
+        }
+
+        .shape:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            background: var(--verde-claro);
+            top: 50%;
+            right: 10%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header / Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--verde-escuro) 0%, var(--verde) 50%, var(--verde-claro) 100%);
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 40px 20px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.2);
+            color: var(--amarelo-claro);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            color: var(--branco);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            color: var(--amarelo);
+            position: relative;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.95);
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-weight: 500;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--amarelo);
+            color: var(--verde-escuro);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: var(--amarelo-claro);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--branco);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--branco);
+            transform: translateY(-3px);
+        }
+
+        /* Seções */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 700;
+            color: var(--verde-escuro);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--verde), var(--amarelo));
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 25px auto 0;
+        }
+
+        /* Sobre */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .about-text strong {
+            color: var(--verde-escuro);
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image .card {
+            background: linear-gradient(135deg, var(--verde) 0%, var(--verde-claro) 100%);
+            border-radius: 20px;
+            padding: 40px;
+            color: var(--branco);
+            text-align: center;
+            box-shadow: var(--sombra);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,215,0,0.3) 0%, transparent 70%);
+        }
+
+        .about-image .card i {
+            font-size: 4rem;
+            color: var(--amarelo);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .about-image .card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .about-image .card p {
+            position: relative;
+            opacity: 0.95;
+        }
+
+        /* Cards de Conteúdo */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--branco);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: var(--sombra);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 100, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--verde), var(--amarelo));
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--sombra-hover);
+        }
+
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, rgba(34,139,34,0.1) 0%, rgba(255,215,0,0.1) 100%);
+            color: var(--verde-escuro);
+        }
+
+        .card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            color: var(--verde-escuro);
+            margin-bottom: 15px;
+        }
+
+        .card p, .card li {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card ul li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .card ul li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--verde);
+        }
+
+        /* Missão */
+        .mission {
+            background: linear-gradient(135deg, var(--verde-escuro) 0%, var(--verde) 100%);
+            color: var(--branco);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .mission .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .mission h2 {
+            color: var(--branco);
+            margin-bottom: 30px;
+        }
+
+        .mission h2::after {
+            background: var(--amarelo);
+        }
+
+        .mission p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.9;
+            opacity: 0.95;
+        }
+
+        .mission .highlight {
+            color: var(--amarelo);
+            font-weight: 700;
+        }
+
+        /* Links */
+        .links-section {
+            background: var(--cinza);
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .social-card {
+            background: var(--branco);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--texto);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .social-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--verde);
+            box-shadow: var(--sombra-hover);
+        }
+
+        .social-card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .social-card.youtube i { color: #FF0000; }
+        .social-card.site i { color: var(--verde); }
+        .social-card.github i { color: #333; }
+
+        .social-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: var(--verde-escuro);
+        }
+
+        .social-card p {
+            font-size: 0.95rem;
+            color: #777;
+        }
+
+        /* Apoio */
+        .support-card {
+            background: linear-gradient(135deg, var(--amarelo) 0%, var(--amarelo-claro) 100%);
+            border-radius: 24px;
+            padding: 50px;
+            text-align: center;
+            box-shadow: var(--sombra);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .support-card i {
+            font-size: 3.5rem;
+            color: var(--verde-escuro);
+            margin-bottom: 20px;
+        }
+
+        .support-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            color: var(--verde-escuro);
+            margin-bottom: 15px;
+        }
+
+        .support-card p {
+            color: #5a4a00;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+
+        .support-card .btn-primary {
+            background: var(--verde-escuro);
+            color: var(--amarelo);
+            box-shadow: 0 4px 15px rgba(0, 100, 0, 0.3);
+        }
+
+        .support-card .btn-primary:hover {
+            background: var(--verde);
+            color: var(--branco);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--verde-escuro);
+            color: var(--branco);
+            padding: 40px 0 30px;
+            text-align: center;
+        }
+
+        footer .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        footer h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--amarelo);
+            font-size: 1.5rem;
+        }
+
+        footer .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        footer .social-links a {
+            color: var(--branco);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        footer .social-links a:hover {
+            color: var(--amarelo);
+            transform: translateY(-3px);
+        }
+
+        footer p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+            margin-top: 20px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 50vh;
+                clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .support-card {
+                padding: 35px 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .btn {
+                padding: 12px 24px;
+                font-size: 0.95rem;
+            }
+
+            .hero-buttons {
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Animações de entrada */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .fade-in:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body>
 
-<div class="content-wrapper">
-    <header>
-        <h1>Inteligência Mil Grau</h1>
+    <!-- Formas decorativas de fundo -->
+    <div class="bg-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <span class="hero-badge fade-in">Canal no YouTube</span>
+            <h1 class="fade-in">Inteligência <span>Mil Grau</span></h1>
+            <p class="fade-in">Tutoriais, entrevistas e projetos práticos de Inteligência Artificial para transformar o futuro.</p>
+            <div class="hero-buttons fade-in">
+                <a href="https://www.youtube.com/inteligenciamilgrau" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                    <i class="fab fa-youtube"></i> Assista no YouTube
+                </a>
+                <a href="#sobre" class="btn btn-secondary">
+                    <i class="fas fa-arrow-down"></i> Saiba Mais
+                </a>
+            </div>
+        </div>
     </header>
 
-    <section>
-        <h2>Sobre o Canal</h2>
-        <p>O <strong>Inteligência Mil Grau</strong> é um canal no YouTube dedicado à inteligência artificial, oferecendo tutoriais, entrevistas e demonstrações práticas de IA. Além dos vídeos, o projeto mantém um site para aprofundar os conteúdos abordados.</p>
+    <!-- Sobre -->
+    <section id="sobre">
+        <div class="container">
+            <div class="section-header">
+                <h2>Sobre o Canal</h2>
+                <p>Conheça o projeto que une conhecimento, tecnologia e comunidade.</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>O <strong>Inteligência Mil Grau</strong> é um canal no YouTube dedicado à inteligência artificial, oferecendo tutoriais, entrevistas e demonstrações práticas de IA. Além dos vídeos, o projeto mantém um site para aprofundar os conteúdos abordados.</p>
+                    <br>
+                    <p>Nosso objetivo é democratizar o acesso ao conhecimento em IA, apresentando desde conceitos fundamentais até implementações avançadas de forma clara e acessível.</p>
+                </div>
+                <div class="about-image">
+                    <div class="card">
+                        <i class="fas fa-robot"></i>
+                        <h3>IA para Todos</h3>
+                        <p>Conteúdo educacional de qualidade para quem quer aprender inteligência artificial do zero.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section>
-        <h2>Missão</h2>
-        <p>A missão do Inteligência Mil Grau é desenvolver inteligências artificiais que colaborem com os seres humanos, visando expandir e melhorar a qualidade de vida. O projeto destaca o compartilhamento de conhecimentos e valores, com a ambição de criar robôs inteligentes e estabelecer um núcleo de pesquisa aberta em IA.</p>
+    <!-- Missão -->
+    <section class="mission">
+        <div class="container">
+            <h2>Nossa Missão</h2>
+            <p>Desenvolver inteligências artificiais que colaborem com os seres humanos, visando <span class="highlight">expandir e melhorar a qualidade de vida</span>. Compartilhamos conhecimentos e valores, com a ambição de criar robôs inteligentes e estabelecer um núcleo de pesquisa aberta em IA.</p>
+        </div>
     </section>
 
+    <!-- Conteúdo e Recursos -->
     <section>
-        <h2>Conteúdo e Recursos</h2>
-        <ul>
-            <li><strong>Tutoriais:</strong> Guias passo a passo para implementar soluções de IA.</li>
-            <li><strong>Entrevistas:</strong> Conversas com especialistas na área.</li>
-            <li><strong>Projetos:</strong> Demonstrações de aplicações práticas de IA.</li>
-        </ul>
-        <p>Além dos vídeos, o projeto disponibiliza códigos e materiais adicionais em seu repositório no GitHub, facilitando o aprendizado e a replicação dos projetos apresentados.</p>
+        <div class="container">
+            <div class="section-header">
+                <h2>Conteúdo e Recursos</h2>
+                <p>Explore tudo o que preparamos para sua jornada em IA.</p>
+            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Tutoriais</h3>
+                    <ul>
+                        <li>Guias passo a passo</li>
+                        <li>Implementações práticas</li>
+                        <li>Exemplos reais de IA</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
+                    <h3>Entrevistas</h3>
+                    <ul>
+                        <li>Conversas com especialistas</li>
+                        <li>Insights do mercado de IA</li>
+                        <li>Dicas de carreira</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>Projetos</h3>
+                    <ul>
+                        <li>Demonstrações práticas</li>
+                        <li>Códigos no GitHub</li>
+                        <li>Materiais para replicar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section>
-        <h2>Apoio e Colaboração</h2>
-        <p>O Inteligência Mil Grau incentiva a participação da comunidade por meio de contribuições e feedback. O projeto também aceita apoio financeiro para sustentar suas atividades e expandir os recursos educacionais.</p>
+    <!-- Links Importantes -->
+    <section class="links-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Links Importantes</h2>
+                <p>Acesse nossos canais e acompanhe todo o conteúdo.</p>
+            </div>
+            <div class="social-grid">
+                <a href="https://www.youtube.com/inteligenciamilgrau" target="_blank" rel="noopener noreferrer" class="social-card youtube">
+                    <i class="fab fa-youtube"></i>
+                    <h3>Canal no YouTube</h3>
+                    <p>Assista aos vídeos e tutoriais</p>
+                </a>
+                <a href="https://www.inteligenciamilgrau.com.br/" target="_blank" rel="noopener noreferrer" class="social-card site">
+                    <i class="fas fa-globe"></i>
+                    <h3>Site Oficial</h3>
+                    <p>Acesse conteúdos exclusivos</p>
+                </a>
+                <a href="https://github.com/inteligenciamilgrau" target="_blank" rel="noopener noreferrer" class="social-card github">
+                    <i class="fab fa-github"></i>
+                    <h3>Repositório no GitHub</h3>
+                    <p>Baixe códigos e projetos</p>
+                </a>
+            </div>
+        </div>
     </section>
 
+    <!-- Apoio -->
     <section>
-        <h2>Links Importantes</h2>
-        <ul>
-            <li><a href="https://www.youtube.com/inteligenciamilgrau" target="_blank">Canal no YouTube: Inteligência Mil Grau</a></li>
-            <li><a href="https://www.inteligenciamilgrau.com.br/" target="_blank">Site Oficial</a></li>
-            <li><a href="https://github.com/inteligenciamilgrau" target="_blank">Repositório no GitHub</a></li>
-        </ul>
+        <div class="container">
+            <div class="support-card">
+                <i class="fas fa-hands-helping"></i>
+                <h3>Apoie o Projeto</h3>
+                <p>O Inteligência Mil Grau incentiva a participação da comunidade por meio de contribuições e feedback. Seu apoio ajuda a sustentar nossas atividades e expandir os recursos educacionais.</p>
+                <a href="https://www.youtube.com/inteligenciamilgrau" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                    <i class="fas fa-heart"></i> Seja um Apoiador
+                </a>
+            </div>
+        </div>
     </section>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Inteligência Mil Grau. Todos os direitos reservados.</p>
+        <div class="container">
+            <div class="footer-content">
+                <h3>Inteligência Mil Grau</h3>
+                <div class="social-links">
+                    <a href="https://www.youtube.com/inteligenciamilgrau" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.inteligenciamilgrau.com.br/" target="_blank" rel="noopener noreferrer" aria-label="Site"><i class="fas fa-globe"></i></a>
+                    <a href="https://github.com/inteligenciamilgrau" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                </div>
+                <p>&copy; 2024 Inteligência Mil Grau. Todos os direitos reservados.</p>
+            </div>
+        </div>
     </footer>
-</div>
 
 </body>
 </html>
