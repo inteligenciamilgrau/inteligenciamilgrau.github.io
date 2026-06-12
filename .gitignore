@@ -1,0 +1,28 @@
+# Sistema operacional
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Editores / IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python (scripts auxiliares)
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node (caso adicione build no futuro)
+node_modules/
+
+# Arquivos temporários e rascunhos
+*.tmp
+*.bak
+*.log
+_*.py
+
+# Claude Code
+.claude/
