@@ -122,14 +122,15 @@
         /* Header / Hero */
         .hero {
             background: linear-gradient(160deg, #020d05 0%, #061a0c 40%, #0b2614 70%, #0e3a1a 100%);
-            min-height: 60vh;
+            min-height: auto;
+            padding: 45px 0 35px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             position: relative;
             overflow: hidden;
-            clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
             border-bottom: 1px solid var(--borda);
         }
 
@@ -146,7 +147,7 @@
         .hero-content {
             position: relative;
             z-index: 1;
-            padding: 40px 20px;
+            padding: 10px 20px;
         }
 
         .hero-badge {
@@ -155,13 +156,13 @@
             gap: 8px;
             background: rgba(57, 224, 106, 0.1);
             color: var(--verde-neon);
-            padding: 8px 20px;
+            padding: 6px 18px;
             border-radius: 50px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 24px;
+            margin-bottom: 14px;
             border: 1px solid rgba(57, 224, 106, 0.3);
             box-shadow: var(--glow);
         }
@@ -182,11 +183,11 @@
 
         .hero h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(2.2rem, 5vw, 4rem);
             font-weight: 800;
             color: var(--branco);
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            margin-bottom: 20px;
+            margin-bottom: 12px;
             letter-spacing: -1px;
         }
 
@@ -197,10 +198,10 @@
         }
 
         .hero p {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             color: rgba(255, 255, 255, 0.95);
             max-width: 600px;
-            margin: 0 auto 30px;
+            margin: 0 auto;
             font-weight: 500;
         }
 
@@ -489,6 +490,11 @@
             background: var(--bg-surface);
             border-top: 1px solid var(--borda);
             border-bottom: 1px solid var(--borda);
+            padding: 40px 0 60px;
+        }
+
+        .links-section .section-header {
+            margin-bottom: 35px;
         }
 
         .social-grid {
@@ -675,8 +681,9 @@
         /* Responsividade */
         @media (max-width: 768px) {
             .hero {
-                min-height: 50vh;
-                clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+                min-height: auto;
+                padding: 35px 0 25px;
+                clip-path: polygon(0 0, 100% 0, 100% 94%, 0 100%);
             }
 
             .about-grid {
