@@ -139,17 +139,6 @@
             position: relative;
         }
 
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.25fr 1fr;
-            gap: 56px;
-            align-items: center;
-        }
-
-        .hero-grid > * {
-            min-width: 0;
-        }
-
         .eyebrow {
             font-family: var(--mono);
             font-size: 0.8rem;
@@ -231,62 +220,6 @@
             background: var(--branco);
             border-color: var(--branco);
         }
-
-        /* Terminal */
-        .terminal {
-            border: 1px solid var(--linha);
-            border-radius: 10px;
-            background: linear-gradient(180deg, rgba(8, 20, 10, 0.9), rgba(5, 12, 7, 0.9));
-            font-family: var(--mono);
-            font-size: 0.82rem;
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
-            min-width: 0;
-            overflow: hidden;
-        }
-
-        .terminal-bar {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            padding: 11px 16px;
-            border-bottom: 1px solid var(--linha);
-        }
-
-        .terminal-bar i {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--linha-forte);
-            opacity: 0.55;
-        }
-
-        .terminal-bar i:first-child {
-            background: var(--verde);
-            opacity: 0.9;
-        }
-
-        .terminal-bar span {
-            margin-left: auto;
-            font-size: 0.7rem;
-            color: var(--muted);
-        }
-
-        .terminal-body {
-            padding: 16px 18px 18px;
-            line-height: 1.9;
-        }
-
-        .terminal-body .ln {
-            display: block;
-            white-space: nowrap;
-            overflow: hidden;
-        }
-
-        .t-prompt { color: var(--verde); }
-        .t-cmd { color: var(--branco); }
-        .t-out { color: var(--muted); }
-        .t-ok { color: var(--verde); }
-        .t-warn { color: var(--amarelo); }
 
         /* ===== Seções ===== */
         section {
@@ -757,11 +690,6 @@
 
         /* ===== Responsivo ===== */
         @media (max-width: 900px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-                gap: 44px;
-            }
-
             .bento {
                 grid-template-columns: 1fr 1fr;
             }
@@ -817,11 +745,6 @@
 
             .hero {
                 padding: 36px 0 32px;
-            }
-
-            .terminal-body {
-                font-size: 0.7rem;
-                padding: 16px 14px 18px;
             }
         }
     </style>
@@ -891,27 +814,11 @@
 
     <!-- Hero -->
     <header class="hero">
-        <div class="container hero-grid">
-            <div>
-                <div class="eyebrow">canal de inteligência artificial</div>
-                <h1>Inteligência<br><em>Mil Grau</em><span class="cursor"></span></h1>
-                <p class="hero-desc">Tutoriais, entrevistas e projetos práticos de Inteligência Artificial para
-                    transformar o futuro.</p>
-            </div>
-            <div class="terminal" aria-hidden="true">
-                <div class="terminal-bar">
-                    <i></i><i></i><i></i>
-                    <span>img@milgrau:~</span>
-                </div>
-                <div class="terminal-body">
-                    <span class="ln t-out">iniciando inteligência mil grau...</span>
-                    <span class="ln"><span class="t-ok">✓</span> <span class="t-out">trilhas para aprender do zero</span></span>
-                    <span class="ln"><span class="t-ok">✓</span> <span class="t-out">tutoriais passo a passo</span></span>
-                    <span class="ln"><span class="t-ok">✓</span> <span class="t-out">entrevistas com especialistas</span></span>
-                    <span class="ln"><span class="t-ok">✓</span> <span class="t-out">jogos e projetos práticos</span></span>
-                    <span class="ln"><span class="t-warn">»</span> <span class="t-cmd">bem-vindo à comunidade!</span></span>
-                </div>
-            </div>
+        <div class="container">
+            <div class="eyebrow">canal de inteligência artificial</div>
+            <h1>Inteligência<br><em>Mil Grau</em><span class="cursor"></span></h1>
+            <p class="hero-desc">Tutoriais, entrevistas e projetos práticos de Inteligência Artificial para
+                transformar o futuro.</p>
         </div>
     </header>
 
