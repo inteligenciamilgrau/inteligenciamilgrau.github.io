@@ -5,37 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inteligência Mil Grau</title>
+    <meta name="description" content="Tutoriais, entrevistas e projetos práticos de Inteligência Artificial.">
     <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer">
     <style>
         :root {
-            /* Paleta Dark */
-            --bg-base: #061a0c;
-            --bg-surface: #0b2614;
-            --bg-card: #0e2e18;
-            --bg-card-hover: #122e1a;
-            --verde-neon: #39e06a;
-            --verde-medio: #1da84a;
-            --verde-escuro: #0a5c28;
+            --bg: #040905;
+            --bg-raise: #071009;
+            --bg-card: #081408;
+            --linha: rgba(62, 230, 120, 0.14);
+            --linha-forte: rgba(62, 230, 120, 0.45);
+            --verde: #3ee678;
+            --verde-dim: #2aa958;
             --amarelo: #f5c800;
-            --amarelo-claro: #ffe566;
-            --branco: #f0fff4;
-            --texto: #c8f5d8;
-            --texto-muted: #6fa882;
-            --borda: rgba(57, 224, 106, 0.15);
-            --borda-hover: rgba(57, 224, 106, 0.5);
-            --sombra: 0 8px 32px rgba(0, 0, 0, 0.5);
-            --sombra-hover: 0 16px 48px rgba(57, 224, 106, 0.2);
-            --glow: 0 0 20px rgba(57, 224, 106, 0.3);
+            --branco: #eafff0;
+            --texto: #b9d6c2;
+            --muted: #61816c;
+            --mono: 'JetBrains Mono', monospace;
+            --display: 'Space Grotesk', sans-serif;
+            --body: 'Inter', sans-serif;
         }
 
         * {
@@ -44,171 +38,175 @@
             box-sizing: border-box;
         }
 
+        ::selection {
+            background: var(--verde);
+            color: var(--bg);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Open Sans', sans-serif;
+            font-family: var(--body);
             color: var(--texto);
             line-height: 1.7;
-            background: var(--bg-base);
-            min-height: 100vh;
+            background: var(--bg);
             overflow-x: hidden;
         }
 
-        /* Elementos decorativos de fundo */
-        .bg-shapes {
+        /* Grade técnica de fundo */
+        body::before {
+            content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            overflow: hidden;
+            inset: 0;
+            z-index: -2;
+            background-image:
+                linear-gradient(rgba(62, 230, 120, 0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(62, 230, 120, 0.025) 1px, transparent 1px);
+            background-size: 56px 56px;
+            mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, black 30%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 0%, black 30%, transparent 100%);
         }
 
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.06;
-            animation: float 20s infinite ease-in-out;
-            filter: blur(2px);
+        a {
+            color: inherit;
         }
 
-        .shape:nth-child(1) {
-            width: 500px;
-            height: 500px;
-            background: var(--verde-neon);
-            top: -150px;
-            right: -150px;
-            animation-delay: 0s;
-        }
-
-        .shape:nth-child(2) {
-            width: 350px;
-            height: 350px;
-            background: var(--amarelo);
-            bottom: 10%;
-            left: -100px;
-            animation-delay: -5s;
-        }
-
-        .shape:nth-child(3) {
-            width: 250px;
-            height: 250px;
-            background: var(--verde-medio);
-            top: 50%;
-            right: 10%;
-            animation-delay: -10s;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0) rotate(0deg);
-            }
-
-            50% {
-                transform: translateY(-30px) rotate(180deg);
-            }
-        }
-
-        /* Container */
         .container {
-            max-width: 1100px;
+            max-width: 1160px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
-        /* Header / Hero */
-        .hero {
-            background: linear-gradient(160deg, #020d05 0%, #061a0c 40%, #0b2614 70%, #0e3a1a 100%);
-            min-height: auto;
-            padding: 45px 0 35px;
+        /* ===== Nav ===== */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(4, 9, 5, 0.82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--linha);
+        }
+
+        .nav-inner {
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
+            justify-content: space-between;
+            height: 58px;
+        }
+
+        .logo {
+            font-family: var(--mono);
+            font-weight: 700;
+            font-size: 1.45rem;
+            color: var(--branco);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+
+        .logo b {
+            color: var(--verde);
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            font-family: var(--mono);
+            font-size: 0.78rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--muted);
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--verde);
+        }
+
+        .nav-links a span {
+            color: var(--verde-dim);
+            margin-right: 4px;
+        }
+
+        /* ===== Hero ===== */
+        .hero {
+            padding: 38px 0 36px;
             position: relative;
-            overflow: hidden;
-            clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
-            border-bottom: 1px solid var(--borda);
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            padding: 10px 20px;
-        }
-
-        .hero-badge {
-            display: inline-flex;
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.25fr 1fr;
+            gap: 56px;
             align-items: center;
-            gap: 8px;
-            background: rgba(57, 224, 106, 0.1);
-            color: var(--verde-neon);
-            padding: 6px 18px;
-            border-radius: 50px;
+        }
+
+        .hero-grid > * {
+            min-width: 0;
+        }
+
+        .eyebrow {
+            font-family: var(--mono);
             font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            color: var(--verde);
             margin-bottom: 14px;
-            border: 1px solid rgba(57, 224, 106, 0.3);
-            box-shadow: var(--glow);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .hero-badge::before {
+        .eyebrow::before {
             content: '';
-            width: 8px;
-            height: 8px;
-            background: var(--verde-neon);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(57, 224, 106, 0.5); }
-            50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(57, 224, 106, 0); }
+            width: 34px;
+            height: 1px;
+            background: var(--verde);
         }
 
         .hero h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2.2rem, 5vw, 4rem);
-            font-weight: 800;
+            font-family: var(--display);
+            font-size: clamp(2.4rem, 5vw, 3.7rem);
+            font-weight: 700;
+            line-height: 1.04;
+            letter-spacing: -0.03em;
             color: var(--branco);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            margin-bottom: 12px;
-            letter-spacing: -1px;
+            margin-bottom: 18px;
         }
 
-        .hero h1 span {
-            color: var(--verde-neon);
-            position: relative;
-            text-shadow: 0 0 30px rgba(57, 224, 106, 0.5);
+        .hero h1 em {
+            font-style: normal;
+            color: var(--verde);
         }
 
-        .hero p {
-            font-size: 1.15rem;
-            color: rgba(255, 255, 255, 0.95);
-            max-width: 600px;
-            margin: 0 auto;
-            font-weight: 500;
+        .cursor {
+            display: inline-block;
+            width: 0.55em;
+            height: 0.92em;
+            background: var(--verde);
+            margin-left: 0.08em;
+            vertical-align: baseline;
+            transform: translateY(0.12em);
+            animation: blink 1.1s steps(1) infinite;
         }
 
-        .hero-buttons {
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .hero-desc {
+            font-size: 1.08rem;
+            color: var(--texto);
+            max-width: 480px;
+            margin-bottom: 26px;
+        }
+
+        .hero-actions {
             display: flex;
-            gap: 15px;
-            justify-content: center;
+            gap: 14px;
             flex-wrap: wrap;
         }
 
@@ -216,478 +214,585 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 14px 32px;
-            border-radius: 50px;
-            font-weight: 700;
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            font-weight: 500;
             text-decoration: none;
-            transition: all 0.3s ease;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            border: 2px solid transparent;
-        }
-
-        .btn-primary {
-            background: var(--verde-neon);
-            color: #041008;
-            box-shadow: 0 4px 20px rgba(57, 224, 106, 0.4);
-            font-weight: 800;
-        }
-
-        .btn-primary i {
-            color: #041008;
-        }
-
-        .btn-primary:hover {
-            background: #5aeba0;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(57, 224, 106, 0.6);
-        }
-
-        .btn-secondary {
-            background: transparent;
+            padding: 13px 24px;
+            border: 1px solid var(--linha-forte);
             color: var(--branco);
-            border-color: var(--borda-hover);
+            transition: all 0.2s ease;
+            position: relative;
         }
 
-        .btn-secondary:hover {
-            background: rgba(57, 224, 106, 0.08);
-            border-color: var(--verde-neon);
-            color: var(--verde-neon);
-            transform: translateY(-3px);
-        }
-
-        /* Seções */
-        section {
-            padding: 80px 0;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2rem, 4vw, 2.8rem);
+        .btn-solid {
+            background: var(--verde);
+            border-color: var(--verde);
+            color: #03140a;
             font-weight: 700;
-            color: var(--branco);
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
         }
 
-        .section-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--verde-neon), var(--amarelo));
-            border-radius: 2px;
-            box-shadow: 0 0 10px rgba(57, 224, 106, 0.5);
+        .btn-solid:hover {
+            background: var(--branco);
+            border-color: var(--branco);
         }
 
-        .section-header p {
-            color: var(--texto-muted);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 25px auto 0;
+        .btn-ghost:hover {
+            border-color: var(--verde);
+            color: var(--verde);
+            background: rgba(62, 230, 120, 0.06);
         }
 
-        /* Sobre */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .about-text {
-            font-size: 1.1rem;
-            color: var(--texto-muted);
-        }
-
-        .about-text strong {
-            color: var(--verde-neon);
-        }
-
-        .about-image {
-            position: relative;
-        }
-
-        .about-image .card {
-            background: linear-gradient(135deg, #0e3a1a 0%, #0b2a14 100%);
-            border-radius: 20px;
-            padding: 40px;
-            color: var(--branco);
-            text-align: center;
-            box-shadow: var(--sombra);
-            border: 1px solid var(--borda-hover);
-            position: relative;
+        /* Terminal */
+        .terminal {
+            border: 1px solid var(--linha);
+            background: linear-gradient(180deg, rgba(8, 20, 10, 0.9), rgba(5, 12, 7, 0.9));
+            font-family: var(--mono);
+            font-size: 0.82rem;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+            min-width: 0;
             overflow: hidden;
         }
 
-        .about-image .card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
-        }
-
-        .about-image .card i {
-            font-size: 4rem;
-            color: var(--amarelo);
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .about-image .card h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            position: relative;
-        }
-
-        .about-image .card p {
-            position: relative;
-            opacity: 0.95;
-        }
-
-        /* Cards de Conteúdo */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: var(--bg-card);
-            border-radius: 20px;
-            padding: 35px;
-            box-shadow: var(--sombra);
-            transition: all 0.3s ease;
-            border: 1px solid var(--borda);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--verde-neon), var(--amarelo));
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--sombra-hover);
-            border-color: var(--borda-hover);
-        }
-
-        .card-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 18px;
+        .terminal-bar {
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin-bottom: 25px;
-            font-size: 1.8rem;
-            background: rgba(57, 224, 106, 0.1);
-            color: var(--verde-neon);
-            border: 1px solid rgba(57, 224, 106, 0.2);
+            gap: 7px;
+            padding: 11px 16px;
+            border-bottom: 1px solid var(--linha);
         }
 
-        .card h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.4rem;
-            color: var(--branco);
-            margin-bottom: 15px;
+        .terminal-bar i {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--linha-forte);
+            opacity: 0.55;
         }
 
-        .card p,
-        .card li {
-            color: var(--texto-muted);
-            font-size: 1rem;
+        .terminal-bar i:first-child {
+            background: var(--verde);
+            opacity: 0.9;
         }
 
-        .card ul {
-            list-style: none;
-            padding: 0;
+        .terminal-bar span {
+            margin-left: auto;
+            font-size: 0.7rem;
+            color: var(--muted);
         }
 
-        .card ul li {
-            padding: 8px 0;
-            padding-left: 25px;
-            position: relative;
-        }
-
-        .card ul li::before {
-            content: '\f00c';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            position: absolute;
-            left: 0;
-            color: var(--verde-neon);
-        }
-
-        /* Missão */
-        .mission {
-            background: linear-gradient(135deg, #020d05 0%, #061a0c 50%, #0b2614 100%);
-            color: var(--branco);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            border-top: 1px solid var(--borda);
-            border-bottom: 1px solid var(--borda);
-        }
-
-        .mission::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(ellipse at center, rgba(57, 224, 106, 0.05) 0%, transparent 70%);
-        }
-
-        .mission .container {
-            position: relative;
-            z-index: 1;
-        }
-
-        .mission h2 {
-            color: var(--branco);
-            margin-bottom: 30px;
-        }
-
-        .mission h2::after {
-            background: linear-gradient(90deg, var(--verde-neon), var(--amarelo));
-            box-shadow: 0 0 10px rgba(57, 224, 106, 0.5);
-        }
-
-        .mission p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto;
+        .terminal-body {
+            padding: 16px 18px 18px;
             line-height: 1.9;
-            color: var(--texto-muted);
         }
 
-        .mission .highlight {
-            color: var(--verde-neon);
-            font-weight: 700;
-        }
-
-        /* Links */
-        .links-section {
-            background: var(--bg-surface);
-            border-top: 1px solid var(--borda);
-            border-bottom: 1px solid var(--borda);
-            padding: 40px 0 60px;
-        }
-
-        .links-section .section-header {
-            margin-bottom: 35px;
-        }
-
-        .social-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .social-card {
-            background: var(--bg-card);
-            border-radius: 16px;
-            padding: 28px 20px;
-            text-align: center;
-            text-decoration: none;
-            color: var(--texto);
-            box-shadow: var(--sombra);
-            transition: all 0.3s ease;
-            border: 1px solid var(--borda);
-            position: relative;
+        .terminal-body .ln {
+            display: block;
+            white-space: nowrap;
             overflow: hidden;
         }
 
-        .social-card::before {
+        .t-prompt { color: var(--verde); }
+        .t-cmd { color: var(--branco); }
+        .t-out { color: var(--muted); }
+        .t-ok { color: var(--verde); }
+        .t-warn { color: var(--amarelo); }
+
+        /* ===== Divisor ===== */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            padding: 8px 0;
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            color: var(--verde);
+            word-spacing: 12px;
+            user-select: none;
+        }
+
+        .divider::before,
+        .divider::after {
             content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 16px;
-            background: radial-gradient(circle at top center, rgba(57, 224, 106, 0.06), transparent 65%);
-            opacity: 0;
-            transition: opacity 0.3s;
+            flex: 1;
+            height: 1px;
+            background: var(--linha);
         }
 
-        .social-card:hover::before {
-            opacity: 1;
+        /* ===== Seções ===== */
+        section {
+            padding: 92px 0;
         }
 
-        .social-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--borda-hover);
-            box-shadow: var(--sombra-hover), 0 0 0 1px rgba(57, 224, 106, 0.2);
+        #comunidade {
+            padding-top: 40px;
         }
 
-        .social-card i {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            display: block;
+        .sec-head {
+            display: flex;
+            align-items: baseline;
+            gap: 20px;
+            margin-bottom: 14px;
         }
 
-        .social-card.jogos i {
-            color: #7b2ff7;
-        }
-
-        .social-card.trilhas i {
-            color: #e67e22;
-        }
-
-        .social-card.modelos i {
-            color: #0984e3;
-        }
-
-        .social-card.brasil i {
-            color: #009c3b;
-        }
-
-        .social-card.atlas i {
-            color: #c0392b;
-        }
-
-        .social-card.livro i {
-            color: #e84393;
-        }
-
-        .social-card.youtube i {
-            color: #FF0000;
-        }
-
-        .social-card.site i {
+        .sec-num {
+            font-family: var(--mono);
+            font-size: 0.85rem;
             color: var(--verde);
         }
 
-        .social-card.github i {
-            color: #333;
-        }
-
-        .social-card h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem;
-            margin-bottom: 8px;
+        .sec-head h2 {
+            font-family: var(--display);
+            font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
             color: var(--branco);
         }
 
-        .social-card p {
-            font-size: 0.9rem;
-            color: var(--texto-muted);
+        .sec-head::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--linha);
+            align-self: center;
         }
 
-        /* Apoio */
-        .support-card {
-            background: linear-gradient(135deg, #0e3a1a 0%, #0b2614 100%);
-            border-radius: 24px;
-            padding: 50px;
-            text-align: center;
-            box-shadow: var(--sombra);
-            border: 1px solid var(--borda-hover);
-            max-width: 800px;
-            margin: 0 auto;
+        .sec-sub {
+            color: var(--muted);
+            margin-bottom: 30px;
+            max-width: 560px;
         }
 
-        .support-card i {
-            font-size: 3.5rem;
-            color: var(--verde-neon);
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 10px rgba(57, 224, 106, 0.5));
+        /* ===== Bento comunidade ===== */
+        .bento {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--linha);
+            border: 1px solid var(--linha);
         }
 
-        .support-card h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8rem;
-            color: var(--branco);
-            margin-bottom: 15px;
-        }
-
-        .support-card p {
-            color: var(--texto-muted);
-            font-size: 1.1rem;
-            margin-bottom: 25px;
-        }
-
-        .support-card .btn-primary {
-            background: var(--verde-neon);
-            color: #041008;
-            box-shadow: 0 4px 20px rgba(57, 224, 106, 0.4);
-        }
-
-        .support-card .btn-primary:hover {
-            background: #5aeba0;
-            box-shadow: 0 8px 30px rgba(57, 224, 106, 0.6);
-        }
-
-        /* Footer */
-        footer {
-            background: #020d05;
-            color: var(--branco);
-            padding: 40px 0 30px;
-            text-align: center;
-            border-top: 1px solid var(--borda);
-        }
-
-        footer .footer-content {
+        .cell {
+            background: var(--bg);
+            padding: 30px 28px 26px;
+            text-decoration: none;
+            position: relative;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 20px;
+            gap: 8px;
+            min-height: 185px;
+            transition: background 0.25s ease;
         }
 
-        footer h3 {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--verde-neon);
-            font-size: 1.5rem;
-            text-shadow: 0 0 15px rgba(57, 224, 106, 0.4);
+        .cell:hover {
+            background: var(--bg-card);
         }
 
-        footer .social-links {
+        .cell-top {
             display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: auto;
         }
 
-        footer .social-links a {
-            color: var(--texto-muted);
-            font-size: 1.4rem;
-            transition: all 0.3s ease;
+        .cell-idx {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--muted);
+            transition: color 0.25s;
         }
 
-        footer .social-links a:hover {
-            color: var(--verde-neon);
-            transform: translateY(-3px);
-            filter: drop-shadow(0 0 6px rgba(57, 224, 106, 0.6));
+        .cell:hover .cell-idx {
+            color: var(--verde);
         }
 
-        footer p {
-            color: rgba(107, 168, 130, 0.6);
+        .cell svg {
+            width: 26px;
+            height: 26px;
+            stroke: var(--muted);
+            fill: none;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: stroke 0.25s, transform 0.25s;
+        }
+
+        .cell:hover svg {
+            stroke: var(--verde);
+            transform: translateY(-2px);
+        }
+
+        .cell h3 {
+            font-family: var(--display);
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--branco);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cell h3::after {
+            content: '↗';
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            color: var(--verde);
+            opacity: 0;
+            transform: translate(-6px, 4px);
+            transition: all 0.25s ease;
+        }
+
+        .cell:hover h3::after {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+
+        .cell p {
+            font-size: 0.88rem;
+            color: var(--muted);
+            line-height: 1.55;
+        }
+
+        .cell-wide {
+            grid-column: span 3;
+            flex-direction: row;
+            align-items: center;
+            gap: 28px;
+            min-height: 0;
+            padding: 34px 28px;
+            background:
+                linear-gradient(90deg, rgba(62, 230, 120, 0.06), transparent 55%),
+                var(--bg);
+        }
+
+        .cell-wide:hover {
+            background:
+                linear-gradient(90deg, rgba(62, 230, 120, 0.1), transparent 55%),
+                var(--bg-card);
+        }
+
+        .cell-wide svg {
+            width: 40px;
+            height: 40px;
+            stroke: var(--verde);
+            flex-shrink: 0;
+        }
+
+        .cell-wide .cell-body {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .cell-wide h3 {
+            font-size: 1.45rem;
+        }
+
+        .cell-wide .cell-idx {
+            margin-left: auto;
+            align-self: flex-start;
+        }
+
+        /* ===== Sobre ===== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 64px;
+            align-items: start;
+        }
+
+        .about-text p {
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+        }
+
+        .about-text strong {
+            color: var(--verde);
+            font-weight: 600;
+        }
+
+        .stats {
+            border: 1px solid var(--linha);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .stat {
+            padding: 26px 24px;
+            border-bottom: 1px solid var(--linha);
+        }
+
+        .stat:nth-child(odd) {
+            border-right: 1px solid var(--linha);
+        }
+
+        .stat:nth-last-child(-n+2) {
+            border-bottom: none;
+        }
+
+        .stat b {
+            display: block;
+            font-family: var(--display);
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--branco);
+            line-height: 1.2;
+        }
+
+        .stat b i {
+            font-style: normal;
+            color: var(--verde);
+        }
+
+        .stat span {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ===== Missão ===== */
+        .mission {
+            border-top: 1px solid var(--linha);
+            border-bottom: 1px solid var(--linha);
+            background:
+                radial-gradient(ellipse 60% 90% at 50% 50%, rgba(62, 230, 120, 0.05), transparent),
+                var(--bg-raise);
+            text-align: center;
+        }
+
+        .mission-label {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--verde);
+            margin-bottom: 30px;
+        }
+
+        .mission blockquote {
+            font-family: var(--display);
+            font-size: clamp(1.4rem, 3vw, 2.1rem);
+            font-weight: 500;
+            line-height: 1.45;
+            letter-spacing: -0.01em;
+            color: var(--branco);
+            max-width: 860px;
+            margin: 0 auto;
+            border: none;
+        }
+
+        .mission blockquote em {
+            font-style: normal;
+            color: var(--verde);
+        }
+
+        /* ===== Conteúdo ===== */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .content-card {
+            border: 1px solid var(--linha);
+            padding: 30px 28px;
+            background: var(--bg-card);
+            transition: border-color 0.25s;
+        }
+
+        .content-card:hover {
+            border-color: var(--linha-forte);
+        }
+
+        .content-card header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 18px;
+            border-bottom: 1px dashed var(--linha);
+        }
+
+        .content-card svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--verde);
+            fill: none;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .content-card h3 {
+            font-family: var(--display);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--branco);
+        }
+
+        .content-card ul {
+            list-style: none;
+            font-family: var(--mono);
+            font-size: 0.83rem;
+        }
+
+        .content-card li {
+            padding: 7px 0;
+            color: var(--texto);
+        }
+
+        .content-card li::before {
+            content: '->';
+            color: var(--verde);
+            margin-right: 12px;
+        }
+
+        /* ===== Apoio ===== */
+        .support {
+            border: 1px solid var(--linha-forte);
+            padding: 46px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            position: relative;
+            background:
+                linear-gradient(120deg, rgba(62, 230, 120, 0.07), transparent 60%),
+                var(--bg-card);
+        }
+
+        /* cantos em cruz */
+        .support::before,
+        .support::after {
+            content: '+';
+            position: absolute;
+            font-family: var(--mono);
+            color: var(--verde);
+            font-size: 1rem;
+            line-height: 1;
+        }
+
+        .support::before {
+            top: -9px;
+            left: -6px;
+        }
+
+        .support::after {
+            bottom: -9px;
+            right: -6px;
+        }
+
+        .support h3 {
+            font-family: var(--display);
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--branco);
+            margin-bottom: 10px;
+            letter-spacing: -0.01em;
+        }
+
+        .support p {
+            color: var(--muted);
+            max-width: 560px;
+        }
+
+        .support .btn {
+            flex-shrink: 0;
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            border-top: 1px solid var(--linha);
+            padding: 56px 0 36px;
+            background: var(--bg-raise);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand p {
             font-size: 0.9rem;
-            margin-top: 20px;
+            color: var(--muted);
+            max-width: 300px;
+            margin-top: 12px;
         }
 
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .hero {
-                min-height: auto;
-                padding: 35px 0 25px;
-                clip-path: polygon(0 0, 100% 0, 100% 94%, 0 100%);
+        .footer-col h4 {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--verde);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .footer-col a {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--texto);
+            text-decoration: none;
+            padding: 4px 0;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--verde);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--linha);
+            padding-top: 26px;
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+
+        .footer-bottom b {
+            color: var(--verde);
+            font-weight: 400;
+        }
+
+        /* ===== Reveal ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.on {
+            opacity: 1;
+            transform: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { opacity: 1; transform: none; transition: none; }
+            .cursor { animation: none; }
+        }
+
+        /* ===== Responsivo ===== */
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 44px;
+            }
+
+            .bento {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .cell-wide {
+                grid-column: span 2;
             }
 
             .about-grid {
@@ -695,54 +800,53 @@
                 gap: 40px;
             }
 
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .support {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 36px 28px;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .nav-links {
+                display: none;
+            }
+
             section {
-                padding: 60px 0;
+                padding: 68px 0;
             }
 
-            .support-card {
-                padding: 35px 25px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .btn {
-                padding: 12px 24px;
-                font-size: 0.95rem;
+            .bento {
+                grid-template-columns: 1fr;
             }
 
-            .hero-buttons {
-                width: 100%;
+            .cell-wide {
+                grid-column: span 1;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
             }
 
-            .btn {
-                width: 100%;
-                justify-content: center;
+            .cell-wide .cell-idx {
+                display: none;
             }
-        }
 
-        /* Animações de entrada */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s ease forwards;
-        }
+            .hero {
+                padding: 36px 0 32px;
+            }
 
-        .fade-in:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .fade-in:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .fade-in:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            .terminal-body {
+                font-size: 0.7rem;
+                padding: 16px 14px 18px;
             }
         }
     </style>
@@ -750,63 +854,163 @@
 
 <body>
 
-    <!-- Formas decorativas de fundo -->
-    <div class="bg-shapes">
-        <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
-    </div>
+    <!-- SVG sprite -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+            <symbol id="i-route" viewBox="0 0 24 24">
+                <circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="5" r="2.5"/>
+                <path d="M8.5 19H15a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h6.5"/>
+            </symbol>
+            <symbol id="i-gamepad" viewBox="0 0 24 24">
+                <path d="M6 9h12a4 4 0 0 1 4 4v2a4 4 0 0 1-4 4c-1.5 0-2.5-1-3.5-2h-5C8.5 18 7.5 19 6 19a4 4 0 0 1-4-4v-2a4 4 0 0 1 4-4Z"/>
+                <path d="M7 12v3M5.5 13.5h3M16.5 12.5h.01M18.5 15h.01"/>
+            </symbol>
+            <symbol id="i-chip" viewBox="0 0 24 24">
+                <rect x="6" y="6" width="12" height="12" rx="1.5"/>
+                <rect x="10" y="10" width="4" height="4"/>
+                <path d="M9 6V3M15 6V3M9 21v-3M15 21v-3M6 9H3M6 15H3M21 9h-3M21 15h-3"/>
+            </symbol>
+            <symbol id="i-flag" viewBox="0 0 24 24">
+                <path d="M5 21V4"/>
+                <path d="M5 4c3-1.8 6 1.8 9 0s5 0 5 0v9s-2-1.8-5 0-6-1.8-9 0"/>
+            </symbol>
+            <symbol id="i-map" viewBox="0 0 24 24">
+                <path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Z"/>
+                <path d="M9 4v14M15 6v14"/>
+            </symbol>
+            <symbol id="i-book" viewBox="0 0 24 24">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15Z"/>
+                <path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/>
+            </symbol>
+            <symbol id="i-play" viewBox="0 0 24 24">
+                <rect x="2" y="5" width="20" height="14" rx="4"/>
+                <path d="m10 9 5 3-5 3V9Z"/>
+            </symbol>
+            <symbol id="i-grad" viewBox="0 0 24 24">
+                <path d="m2 9 10-5 10 5-10 5L2 9Z"/>
+                <path d="M6 11.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5M22 9v5"/>
+            </symbol>
+            <symbol id="i-mic" viewBox="0 0 24 24">
+                <rect x="9" y="2" width="6" height="12" rx="3"/>
+                <path d="M5 10a7 7 0 0 0 14 0M12 17v4M8.5 21h7"/>
+            </symbol>
+            <symbol id="i-nodes" viewBox="0 0 24 24">
+                <circle cx="5" cy="5" r="2.5"/><circle cx="19" cy="5" r="2.5"/><circle cx="12" cy="19" r="2.5"/>
+                <path d="M7 6.5 10.5 17M17 6.5 13.5 17M7.5 5h9"/>
+            </symbol>
+        </defs>
+    </svg>
 
-    <!-- Hero Section -->
+    <!-- Nav -->
+    <nav>
+        <div class="container nav-inner">
+            <a class="logo" href="#">img<b>²</b>_</a>
+            <div class="nav-links">
+                <a href="#comunidade"><span>01</span>comunidade</a>
+                <a href="#sobre"><span>02</span>sobre</a>
+                <a href="#conteudo"><span>03</span>conteúdo</a>
+                <a href="#apoie"><span>04</span>apoie</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
     <header class="hero">
-        <div class="hero-content">
-            <span class="hero-badge fade-in">Canal no YouTube</span>
-            <h1 class="fade-in">Inteligência <span>Mil Grau</span></h1>
-            <p class="fade-in">Tutoriais, entrevistas e projetos práticos de Inteligência Artificial para transformar o
-                futuro.</p>
+        <div class="container hero-grid">
+            <div>
+                <div class="eyebrow">canal de inteligência artificial</div>
+                <h1>Inteligência<br><em>Mil Grau</em><span class="cursor"></span></h1>
+                <p class="hero-desc">Tutoriais, entrevistas e projetos práticos de Inteligência Artificial para
+                    transformar o futuro.</p>
+                <div class="hero-actions">
+                    <a class="btn btn-solid" href="https://inteligenciamilgrau.github.io/trilhas/">→ começar pelas trilhas</a>
+                    <a class="btn btn-ghost" href="#comunidade">explorar a comunidade</a>
+                </div>
+            </div>
+            <div class="terminal" aria-hidden="true">
+                <div class="terminal-bar">
+                    <i></i><i></i><i></i>
+                    <span>img@milgrau:~</span>
+                </div>
+                <div class="terminal-body">
+                    <span class="ln t-out">iniciando inteligência mil grau...</span>
+                    <span class="ln"><span class="t-ok">✓</span> <span class="t-out">trilhas para aprender do zero</span></span>
+                    <span class="ln"><span class="t-ok">✓</span> <span class="t-out">tutoriais passo a passo</span></span>
+                    <span class="ln"><span class="t-ok">✓</span> <span class="t-out">entrevistas com especialistas</span></span>
+                    <span class="ln"><span class="t-ok">✓</span> <span class="t-out">jogos e projetos práticos</span></span>
+                    <span class="ln"><span class="t-warn">»</span> <span class="t-cmd">bem-vindo à comunidade!</span></span>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- Comunidade IMG² -->
-    <section class="links-section">
+    <!-- Divisor -->
+    <div class="container">
+        <div class="divider" aria-hidden="true">◆ ◆ ◆</div>
+    </div>
+
+    <!-- Comunidade -->
+    <section id="comunidade">
         <div class="container">
-            <div class="section-header">
+            <div class="sec-head reveal">
+                <span class="sec-num">01</span>
                 <h2>Comunidade IMG²</h2>
-                <p>Acesse nossos canais e acompanhe todo o conteúdo.</p>
             </div>
-            <div class="social-grid">
-                <a href="https://inteligenciamilgrau.github.io/trilhas/" class="social-card trilhas">
-                    <i class="fas fa-route"></i>
-                    <h3>Trilhas e Cursos</h3>
-                    <p>Aprenda IA passo a passo</p>
+            <p class="sec-sub reveal">Acesse nossos canais e acompanhe todo o conteúdo.</p>
+            <div class="bento reveal">
+                <a href="https://inteligenciamilgrau.github.io/trilhas/" class="cell cell-wide">
+                    <svg><use href="#i-route"/></svg>
+                    <div class="cell-body">
+                        <h3>Trilhas e Cursos</h3>
+                        <p>Aprenda IA passo a passo, do zero — o melhor lugar para começar.</p>
+                    </div>
+                    <span class="cell-idx">[01]</span>
                 </a>
-                <a href="https://inteligenciamilgrau.github.io/jogoscomia/" class="social-card jogos">
-                    <i class="fas fa-gamepad"></i>
+                <a href="https://inteligenciamilgrau.github.io/jogoscomia/" class="cell">
+                    <div class="cell-top">
+                        <svg><use href="#i-gamepad"/></svg>
+                        <span class="cell-idx">[02]</span>
+                    </div>
                     <h3>Jogos com IA</h3>
                     <p>Jogue games criados com IA</p>
                 </a>
-                <a href="https://ainews.inteligenciamilgrau.com.br/" class="social-card modelos">
-                    <i class="fas fa-microchip"></i>
+                <a href="https://ainews.inteligenciamilgrau.com.br/" class="cell">
+                    <div class="cell-top">
+                        <svg><use href="#i-chip"/></svg>
+                        <span class="cell-idx">[03]</span>
+                    </div>
                     <h3>Modelos de IA Liberados</h3>
                     <p>Confira os modelos mais recentes</p>
                 </a>
-                <a href="https://inteligenciamilgrau.github.io/projetobrasilia/" class="social-card brasil">
-                    <i class="fas fa-flag"></i>
+                <a href="https://inteligenciamilgrau.github.io/projetobrasilia/" class="cell">
+                    <div class="cell-top">
+                        <svg><use href="#i-flag"/></svg>
+                        <span class="cell-idx">[04]</span>
+                    </div>
                     <h3>Projeto Brasil IA</h3>
                     <p>IA para o desenvolvimento do Brasil</p>
                 </a>
-                <a href="https://atlas.inteligenciamilgrau.com.br/" class="social-card atlas">
-                    <i class="fas fa-map"></i>
+                <a href="https://atlas.inteligenciamilgrau.com.br/" class="cell">
+                    <div class="cell-top">
+                        <svg><use href="#i-map"/></svg>
+                        <span class="cell-idx">[05]</span>
+                    </div>
                     <h3>Atlas do Brasil</h3>
                     <p>Explore dados e mapas do Brasil</p>
                 </a>
-                <a href="https://inteligenciamilgrau.github.io/psicologika/" class="social-card livro">
-                    <i class="fas fa-book"></i>
+                <a href="https://inteligenciamilgrau.github.io/psicologika/" class="cell">
+                    <div class="cell-top">
+                        <svg><use href="#i-book"/></svg>
+                        <span class="cell-idx">[06]</span>
+                    </div>
                     <h3>Livro PsicoLógika</h3>
                     <p>Leia o livro PsicoLógika</p>
                 </a>
-                <a href="https://www.youtube.com/inteligenciamilgrau" class="social-card youtube">
-                    <i class="fab fa-youtube"></i>
+                <a href="https://www.youtube.com/inteligenciamilgrau" class="cell">
+                    <div class="cell-top">
+                        <svg><use href="#i-play"/></svg>
+                        <span class="cell-idx">[07]</span>
+                    </div>
                     <h3>Canal no YouTube</h3>
                     <p>Assista aos vídeos e tutoriais</p>
                 </a>
@@ -817,25 +1021,35 @@
     <!-- Sobre -->
     <section id="sobre">
         <div class="container">
-            <div class="section-header">
+            <div class="sec-head reveal">
+                <span class="sec-num">02</span>
                 <h2>Sobre o Canal</h2>
-                <p>Conheça o projeto que une conhecimento, tecnologia e comunidade.</p>
             </div>
+            <p class="sec-sub reveal">Conheça o projeto que une conhecimento, tecnologia e comunidade.</p>
             <div class="about-grid">
-                <div class="about-text">
+                <div class="about-text reveal">
                     <p>O <strong>Inteligência Mil Grau</strong> é um canal no YouTube dedicado à inteligência
-                        artificial, oferecendo tutoriais, entrevistas e demonstrações práticas de IA. Além dos vídeos, o
-                        projeto mantém um site para aprofundar os conteúdos abordados.</p>
-                    <br>
+                        artificial, oferecendo tutoriais, entrevistas e demonstrações práticas de IA. Além dos vídeos,
+                        o projeto mantém um site para aprofundar os conteúdos abordados.</p>
                     <p>Nosso objetivo é democratizar o acesso ao conhecimento em IA, apresentando desde conceitos
                         fundamentais até implementações avançadas de forma clara e acessível.</p>
                 </div>
-                <div class="about-image">
-                    <div class="card">
-                        <i class="fas fa-robot"></i>
-                        <h3>IA para Todos</h3>
-                        <p>Conteúdo educacional de qualidade para quem quer aprender inteligência artificial do zero.
-                        </p>
+                <div class="stats reveal">
+                    <div class="stat">
+                        <b><i>+</i>1000°</b>
+                        <span>de conteúdo em IA</span>
+                    </div>
+                    <div class="stat">
+                        <b>100<i>%</i></b>
+                        <span>em português</span>
+                    </div>
+                    <div class="stat">
+                        <b>open<i>_</i>source</b>
+                        <span>códigos no github</span>
+                    </div>
+                    <div class="stat">
+                        <b>do zero <i>→</i> pro</b>
+                        <span>para todos os níveis</span>
                     </div>
                 </div>
             </div>
@@ -844,49 +1058,50 @@
 
     <!-- Missão -->
     <section class="mission">
-        <div class="container">
-            <h2>Nossa Missão</h2>
-            <p>Desenvolver inteligências artificiais que colaborem com os seres humanos, visando <span
-                    class="highlight">expandir e melhorar a qualidade de vida</span>. Compartilhamos conhecimentos e
-                valores, com a ambição de criar robôs inteligentes e estabelecer um núcleo de pesquisa aberta em IA.</p>
+        <div class="container reveal">
+            <div class="mission-label">// nossa missão</div>
+            <blockquote>Desenvolver inteligências artificiais que colaborem com os seres humanos, visando
+                <em>expandir e melhorar a qualidade de vida</em>. Compartilhamos conhecimentos e valores, com a
+                ambição de criar robôs inteligentes e estabelecer um núcleo de pesquisa aberta em IA.</blockquote>
         </div>
     </section>
 
-    <!-- Conteúdo e Recursos -->
-    <section>
+    <!-- Conteúdo -->
+    <section id="conteudo">
         <div class="container">
-            <div class="section-header">
+            <div class="sec-head reveal">
+                <span class="sec-num">03</span>
                 <h2>Conteúdo e Recursos</h2>
-                <p>Explore tudo o que preparamos para sua jornada em IA.</p>
             </div>
-            <div class="cards-grid">
-                <div class="card">
-                    <div class="card-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Tutoriais</h3>
+            <p class="sec-sub reveal">Explore tudo o que preparamos para sua jornada em IA.</p>
+            <div class="content-grid">
+                <div class="content-card reveal">
+                    <header>
+                        <svg><use href="#i-grad"/></svg>
+                        <h3>Tutoriais</h3>
+                    </header>
                     <ul>
                         <li>Guias passo a passo</li>
                         <li>Implementações práticas</li>
                         <li>Exemplos reais de IA</li>
                     </ul>
                 </div>
-                <div class="card">
-                    <div class="card-icon">
-                        <i class="fas fa-microphone-alt"></i>
-                    </div>
-                    <h3>Entrevistas</h3>
+                <div class="content-card reveal">
+                    <header>
+                        <svg><use href="#i-mic"/></svg>
+                        <h3>Entrevistas</h3>
+                    </header>
                     <ul>
                         <li>Conversas com especialistas</li>
                         <li>Insights do mercado de IA</li>
                         <li>Dicas de carreira</li>
                     </ul>
                 </div>
-                <div class="card">
-                    <div class="card-icon">
-                        <i class="fas fa-project-diagram"></i>
-                    </div>
-                    <h3>Projetos</h3>
+                <div class="content-card reveal">
+                    <header>
+                        <svg><use href="#i-nodes"/></svg>
+                        <h3>Projetos</h3>
+                    </header>
                     <ul>
                         <li>Demonstrações práticas</li>
                         <li>Códigos no GitHub</li>
@@ -897,19 +1112,17 @@
         </div>
     </section>
 
-
     <!-- Apoio -->
-    <section>
+    <section id="apoie">
         <div class="container">
-            <div class="support-card">
-                <i class="fas fa-hands-helping"></i>
-                <h3>Apoie o Projeto</h3>
-                <p>O Inteligência Mil Grau incentiva a participação da comunidade por meio de contribuições e feedback.
-                    Seu apoio ajuda a sustentar nossas atividades e expandir os recursos educacionais.</p>
+            <div class="support reveal">
+                <div>
+                    <h3>Apoie o Projeto</h3>
+                    <p>O Inteligência Mil Grau incentiva a participação da comunidade por meio de contribuições e
+                        feedback. Seu apoio ajuda a sustentar nossas atividades e expandir os recursos educacionais.</p>
+                </div>
                 <a href="https://www.youtube.com/inteligenciamilgrau" target="_blank" rel="noopener noreferrer"
-                    class="btn btn-primary">
-                    <i class="fas fa-heart"></i> Seja um Apoiador
-                </a>
+                    class="btn btn-solid">♥ seja um apoiador</a>
             </div>
         </div>
     </section>
@@ -917,23 +1130,45 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <h3>Inteligência Mil Grau</h3>
-                <div class="social-links">
-                    <a href="https://inteligenciamilgrau.github.io/psicologika/" aria-label="Livro PsicoLógika"><i class="fas fa-book"></i></a>
-                    <a href="https://www.youtube.com/inteligenciamilgrau" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    <a href="https://www.inteligenciamilgrau.com.br/" aria-label="Site"><i class="fas fa-globe"></i></a>
-                    <a href="https://github.com/inteligenciamilgrau" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://inteligenciamilgrau.github.io/jogoscomia/" aria-label="Jogos com IA"><i class="fas fa-gamepad"></i></a>
-                    <a href="https://inteligenciamilgrau.github.io/trilhas/" aria-label="Trilhas e Cursos"><i class="fas fa-route"></i></a>
-                    <a href="https://ainews.inteligenciamilgrau.com.br/" aria-label="Modelos de IA Liberados"><i class="fas fa-microchip"></i></a>
-                    <a href="https://inteligenciamilgrau.github.io/projetobrasilia/" aria-label="Projeto Brasil IA"><i class="fas fa-flag"></i></a>
-                    <a href="https://atlas.inteligenciamilgrau.com.br/" aria-label="Atlas do Brasil"><i class="fas fa-map"></i></a>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a class="logo" href="#">img<b>²</b>_</a>
+                    <p>Democratizando o acesso ao conhecimento em inteligência artificial, em português.</p>
                 </div>
-                <p>&copy; 2024 Inteligência Mil Grau. Todos os direitos reservados.</p>
+                <div class="footer-col">
+                    <h4>Projetos</h4>
+                    <a href="https://inteligenciamilgrau.github.io/trilhas/">Trilhas e Cursos</a>
+                    <a href="https://inteligenciamilgrau.github.io/jogoscomia/">Jogos com IA</a>
+                    <a href="https://ainews.inteligenciamilgrau.com.br/">Modelos de IA Liberados</a>
+                    <a href="https://inteligenciamilgrau.github.io/projetobrasilia/">Projeto Brasil IA</a>
+                    <a href="https://atlas.inteligenciamilgrau.com.br/">Atlas do Brasil</a>
+                    <a href="https://inteligenciamilgrau.github.io/psicologika/">Livro PsicoLógika</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Canais</h4>
+                    <a href="https://www.youtube.com/inteligenciamilgrau">YouTube</a>
+                    <a href="https://www.inteligenciamilgrau.com.br/">Site Oficial</a>
+                    <a href="https://github.com/inteligenciamilgrau">GitHub</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2024 Inteligência Mil Grau — todos os direitos reservados</span>
+                <span>feito com <b>♥</b> e muita <b>ia</b></span>
             </div>
         </div>
     </footer>
+
+    <script>
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('on');
+                    obs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    </script>
 
 </body>
 
