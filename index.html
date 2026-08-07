@@ -281,7 +281,7 @@
         /* ===== Bento comunidade ===== */
         .bento {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: 1fr;
             gap: 1px;
             background: var(--linha);
             border: 1px solid var(--linha);
@@ -303,13 +303,6 @@
 
         .cell:hover {
             background: var(--bg-card);
-        }
-
-        .cell-top {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            margin-bottom: auto;
         }
 
         .cell-idx {
@@ -371,11 +364,10 @@
         }
 
         .cell-wide {
-            grid-column: span 3;
             flex-direction: row;
             align-items: center;
             gap: 28px;
-            min-height: 0;
+            min-height: 156px;
             padding: 34px 28px;
             background:
                 linear-gradient(90deg, rgba(62, 230, 120, 0.06), transparent 55%),
@@ -419,13 +411,6 @@
             flex-shrink: 0;
         }
 
-        .cell-banner {
-            width: calc(100% + 56px);
-            height: 148px;
-            object-fit: cover;
-            object-position: top;
-            margin: -30px -28px 4px;
-        }
 
         /* ===== Sobre ===== */
         .about-grid {
@@ -725,12 +710,8 @@
                 gap: 28px;
             }
 
-            .bento {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .cell-wide {
-                grid-column: span 2;
+            .cell-thumb {
+                width: 190px;
             }
 
             .about-grid {
@@ -763,12 +744,7 @@
                 padding: 68px 0;
             }
 
-            .bento {
-                grid-template-columns: 1fr;
-            }
-
             .cell-wide {
-                grid-column: span 1;
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 14px;
@@ -879,7 +855,8 @@
             <div class="bento reveal">
                 <a href="https://inteligenciamilgrau.github.io/trilhas/" class="cell cell-wide">
                     <img class="cell-thumb" src="assets/images/trilhas.jpg"
-                        alt="Prévia dos cursos das trilhas de IA" loading="lazy">
+                        alt="Prévia dos cursos das trilhas de IA" loading="lazy"
+                        onerror="this.style.display='none'">
                     <svg><use href="#i-route"/></svg>
                     <div class="cell-body">
                         <h3>Trilhas e Cursos</h3>
@@ -887,55 +864,71 @@
                     </div>
                     <span class="cell-idx">[01]</span>
                 </a>
-                <a href="https://inteligenciamilgrau.github.io/jogoscomia/" class="cell">
-                    <img class="cell-banner" src="assets/images/jogos.jpg"
-                        alt="Prévia dos jogos criados com IA" loading="lazy">
-                    <div class="cell-top">
-                        <svg><use href="#i-gamepad"/></svg>
-                        <span class="cell-idx">[02]</span>
+                <a href="https://inteligenciamilgrau.github.io/jogoscomia/" class="cell cell-wide">
+                    <img class="cell-thumb" src="assets/images/jogos.jpg"
+                        alt="Prévia dos jogos criados com IA" loading="lazy"
+                        onerror="this.style.display='none'">
+                    <svg><use href="#i-gamepad"/></svg>
+                    <div class="cell-body">
+                        <h3>Jogos com IA</h3>
+                        <p>Jogue games criados com IA</p>
                     </div>
-                    <h3>Jogos com IA</h3>
-                    <p>Jogue games criados com IA</p>
+                    <span class="cell-idx">[02]</span>
                 </a>
-                <a href="https://ainews.inteligenciamilgrau.com.br/" class="cell">
-                    <div class="cell-top">
-                        <svg><use href="#i-chip"/></svg>
-                        <span class="cell-idx">[03]</span>
+                <a href="https://ainews.inteligenciamilgrau.com.br/" class="cell cell-wide">
+                    <img class="cell-thumb" src="assets/images/modelos.jpg"
+                        alt="Prévia dos modelos de IA liberados" loading="lazy"
+                        onerror="this.style.display='none'">
+                    <svg><use href="#i-chip"/></svg>
+                    <div class="cell-body">
+                        <h3>Modelos de IA Liberados</h3>
+                        <p>Confira os modelos mais recentes</p>
                     </div>
-                    <h3>Modelos de IA Liberados</h3>
-                    <p>Confira os modelos mais recentes</p>
+                    <span class="cell-idx">[03]</span>
                 </a>
-                <a href="https://inteligenciamilgrau.github.io/projetobrasilia/" class="cell">
-                    <div class="cell-top">
-                        <svg><use href="#i-flag"/></svg>
-                        <span class="cell-idx">[04]</span>
+                <a href="https://inteligenciamilgrau.github.io/projetobrasilia/" class="cell cell-wide">
+                    <img class="cell-thumb" src="assets/images/brasilia.jpg"
+                        alt="Prévia do Projeto Brasil IA" loading="lazy"
+                        onerror="this.style.display='none'">
+                    <svg><use href="#i-flag"/></svg>
+                    <div class="cell-body">
+                        <h3>Projeto Brasil IA</h3>
+                        <p>IA para o desenvolvimento do Brasil</p>
                     </div>
-                    <h3>Projeto Brasil IA</h3>
-                    <p>IA para o desenvolvimento do Brasil</p>
+                    <span class="cell-idx">[04]</span>
                 </a>
-                <a href="https://atlas.inteligenciamilgrau.com.br/" class="cell">
-                    <div class="cell-top">
-                        <svg><use href="#i-map"/></svg>
-                        <span class="cell-idx">[05]</span>
+                <a href="https://atlas.inteligenciamilgrau.com.br/" class="cell cell-wide">
+                    <img class="cell-thumb" src="assets/images/atlas.jpg"
+                        alt="Prévia do Atlas do Brasil" loading="lazy"
+                        onerror="this.style.display='none'">
+                    <svg><use href="#i-map"/></svg>
+                    <div class="cell-body">
+                        <h3>Atlas do Brasil</h3>
+                        <p>Explore dados e mapas do Brasil</p>
                     </div>
-                    <h3>Atlas do Brasil</h3>
-                    <p>Explore dados e mapas do Brasil</p>
+                    <span class="cell-idx">[05]</span>
                 </a>
-                <a href="https://inteligenciamilgrau.github.io/psicologika/" class="cell">
-                    <div class="cell-top">
-                        <svg><use href="#i-book"/></svg>
-                        <span class="cell-idx">[06]</span>
+                <a href="https://inteligenciamilgrau.github.io/psicologika/" class="cell cell-wide">
+                    <img class="cell-thumb" src="assets/images/psicologika.jpg"
+                        alt="Prévia do livro PsicoLógika" loading="lazy"
+                        onerror="this.style.display='none'">
+                    <svg><use href="#i-book"/></svg>
+                    <div class="cell-body">
+                        <h3>Livro PsicoLógika</h3>
+                        <p>Leia o livro PsicoLógika</p>
                     </div>
-                    <h3>Livro PsicoLógika</h3>
-                    <p>Leia o livro PsicoLógika</p>
+                    <span class="cell-idx">[06]</span>
                 </a>
-                <a href="https://www.youtube.com/inteligenciamilgrau" class="cell">
-                    <div class="cell-top">
-                        <svg><use href="#i-play"/></svg>
-                        <span class="cell-idx">[07]</span>
+                <a href="https://www.youtube.com/inteligenciamilgrau" class="cell cell-wide">
+                    <img class="cell-thumb" src="assets/images/img.jpg"
+                        alt="Prévia do canal Inteligência Mil Grau no YouTube" loading="lazy"
+                        onerror="this.style.display='none'">
+                    <svg><use href="#i-play"/></svg>
+                    <div class="cell-body">
+                        <h3>Canal no YouTube</h3>
+                        <p>Assista aos vídeos e tutoriais</p>
                     </div>
-                    <h3>Canal no YouTube</h3>
-                    <p>Assista aos vídeos e tutoriais</p>
+                    <span class="cell-idx">[07]</span>
                 </a>
             </div>
         </div>
