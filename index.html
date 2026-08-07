@@ -402,6 +402,37 @@
             align-self: flex-start;
         }
 
+        .top5 {
+            list-style: none;
+            margin-top: 12px;
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            line-height: 1.5;
+        }
+
+        .top5 li {
+            padding: 2.5px 0;
+        }
+
+        .top5 li::before {
+            content: '->';
+            color: var(--verde);
+            margin-right: 10px;
+        }
+
+        .top5 .t5-date {
+            color: var(--verde-dim);
+            margin-right: 10px;
+        }
+
+        .top5 .t5-name {
+            color: var(--branco);
+        }
+
+        .top5 .t5-co {
+            color: var(--muted);
+        }
+
         .cell-thumb {
             align-self: stretch;
             width: 250px;
@@ -873,6 +904,7 @@
                     <div class="cell-body">
                         <h3>Modelos de IA Liberados</h3>
                         <p>Confira os modelos mais recentes</p>
+                        <ul class="top5" id="top5-lancamentos" aria-label="Últimos lançamentos de IA"></ul>
                     </div>
                     <span class="cell-idx">[02]</span>
                 </a>
@@ -1085,6 +1117,34 @@
             });
         }, { threshold: 0.12 });
         document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+        // Top 5 lançamentos, puxados do ainews (mesmo dono, outro repo)
+        fetch('https://raw.githubusercontent.com/inteligenciamilgrau/ainews/main/data/models.json')
+            .then(r => r.json())
+            .then(data => {
+                const ul = document.getElementById('top5-lancamentos');
+                if (!ul) return;
+                (data.models || [])
+                    .filter(m => m.release_date && m.model)
+                    .sort((a, b) => b.release_date.localeCompare(a.release_date))
+                    .slice(0, 5)
+                    .forEach(m => {
+                        const [, mes, dia] = m.release_date.split('-');
+                        const li = document.createElement('li');
+                        const dt = document.createElement('span');
+                        dt.className = 't5-date';
+                        dt.textContent = `${dia}/${mes}`;
+                        const nome = document.createElement('span');
+                        nome.className = 't5-name';
+                        nome.textContent = m.model;
+                        const co = document.createElement('span');
+                        co.className = 't5-co';
+                        co.textContent = ` · ${m.company}`;
+                        li.append(dt, nome, co);
+                        ul.appendChild(li);
+                    });
+            })
+            .catch(() => { /* sem lista, card fica como antes */ });
     </script>
 
 </body>
