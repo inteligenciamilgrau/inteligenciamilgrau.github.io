@@ -282,12 +282,14 @@
         }
 
         .lanc-grid {
+            position: relative;
             display: grid;
             grid-auto-flow: column;
             grid-auto-columns: minmax(172px, 1fr);
             gap: 12px;
             overflow-x: auto;
             padding: 6px 2px 12px;
+            scrollbar-width: thin;
         }
 
         .lanc-item {
@@ -1276,19 +1278,37 @@
                     });
                     document.getElementById('lancamentos').hidden = false;
 
-                    // Holofote alternando de card em card
+                    // Holofote alternando de card em card; a fila desliza junto quando não cabem todos
                     const cards = Array.from(grid.children);
                     if (cards.length > 1 && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
                         let atual = 0;
                         let pausado = false;
-                        grid.addEventListener('mouseenter', () => { pausado = true; });
-                        grid.addEventListener('mouseleave', () => { pausado = false; });
-                        cards[atual].classList.add('destaque');
+                        let retomar = null;
+                        const pausar = (ms) => {
+                            pausado = true;
+                            clearTimeout(retomar);
+                            if (ms) retomar = setTimeout(() => { pausado = false; }, ms);
+                        };
+                        grid.addEventListener('mouseenter', () => pausar());
+                        grid.addEventListener('mouseleave', () => { clearTimeout(retomar); pausado = false; });
+                        grid.addEventListener('touchstart', () => pausar(), { passive: true });
+                        grid.addEventListener('touchend', () => pausar(4000), { passive: true });
+                        const focar = () => {
+                            const card = cards[atual];
+                            card.classList.add('destaque');
+                            if (grid.scrollWidth > grid.clientWidth + 8) {
+                                grid.scrollTo({
+                                    left: card.offsetLeft - (grid.clientWidth - card.offsetWidth) / 2,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        };
+                        focar();
                         setInterval(() => {
                             if (pausado) return;
                             cards[atual].classList.remove('destaque');
                             atual = (atual + 1) % cards.length;
-                            cards[atual].classList.add('destaque');
+                            focar();
                         }, 2600);
                     }
                 }
