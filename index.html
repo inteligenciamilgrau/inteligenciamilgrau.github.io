@@ -410,6 +410,23 @@
             align-self: flex-start;
         }
 
+        .cell-thumb {
+            align-self: stretch;
+            width: 250px;
+            object-fit: cover;
+            object-position: top;
+            margin: -34px 0 -34px -28px;
+            flex-shrink: 0;
+        }
+
+        .cell-banner {
+            width: calc(100% + 56px);
+            height: 148px;
+            object-fit: cover;
+            object-position: top;
+            margin: -30px -28px 4px;
+        }
+
         /* ===== Sobre ===== */
         .about-grid {
             display: grid;
@@ -761,6 +778,13 @@
                 display: none;
             }
 
+            .cell-thumb {
+                align-self: auto;
+                width: calc(100% + 56px);
+                height: 190px;
+                margin: -34px -28px 0;
+            }
+
             .hero {
                 padding: 36px 0 14px;
             }
@@ -839,7 +863,7 @@
                 <p class="hero-desc">Tutoriais, entrevistas e projetos práticos de Inteligência Artificial para
                     transformar o futuro.</p>
             </div>
-            <img class="hero-img" src="assets/images/apresentador.png"
+            <img class="hero-img" src="assets/images/apresentador.jpg"
                 alt="Apresentador do Inteligência Mil Grau com fones de ouvido e microfone, cercado por nomes de IAs">
         </div>
     </header>
@@ -854,6 +878,8 @@
             <p class="sec-sub reveal">Acesse nossos canais e acompanhe todo o conteúdo.</p>
             <div class="bento reveal">
                 <a href="https://inteligenciamilgrau.github.io/trilhas/" class="cell cell-wide">
+                    <img class="cell-thumb" src="assets/images/trilhas.jpg"
+                        alt="Prévia dos cursos das trilhas de IA" loading="lazy">
                     <svg><use href="#i-route"/></svg>
                     <div class="cell-body">
                         <h3>Trilhas e Cursos</h3>
@@ -862,6 +888,8 @@
                     <span class="cell-idx">[01]</span>
                 </a>
                 <a href="https://inteligenciamilgrau.github.io/jogoscomia/" class="cell">
+                    <img class="cell-banner" src="assets/images/jogos.jpg"
+                        alt="Prévia dos jogos criados com IA" loading="lazy">
                     <div class="cell-top">
                         <svg><use href="#i-gamepad"/></svg>
                         <span class="cell-idx">[02]</span>
