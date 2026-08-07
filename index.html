@@ -234,6 +234,119 @@
             border-color: var(--branco);
         }
 
+        /* ===== Lançamentos em destaque ===== */
+        .lancamentos {
+            padding: 4px 0 30px;
+        }
+
+        .lanc-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .lanc-label {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--verde);
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--verde);
+            animation: pulse 1.6s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            50% { opacity: 0.2; }
+        }
+
+        .lanc-all {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .lanc-all:hover {
+            color: var(--verde);
+        }
+
+        .lanc-grid {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: minmax(172px, 1fr);
+            gap: 12px;
+            overflow-x: auto;
+            padding: 6px 2px 12px;
+        }
+
+        .lanc-item {
+            border: 1px solid var(--linha);
+            border-radius: 10px;
+            padding: 14px 16px;
+            background: var(--bg-card);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            transition: border-color 0.45s ease, background 0.45s ease,
+                transform 0.45s ease, box-shadow 0.45s ease;
+        }
+
+        .lanc-item:hover {
+            border-color: var(--linha-forte);
+            background: var(--bg-raise);
+        }
+
+        .lanc-item.destaque {
+            border-color: var(--verde);
+            background: var(--bg-raise);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 26px rgba(62, 230, 120, 0.16);
+        }
+
+        .lanc-item.destaque .lanc-date {
+            color: var(--verde);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .lanc-item.destaque {
+                transform: none;
+            }
+        }
+
+        .lanc-date {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--verde-dim);
+        }
+
+        .lanc-nome {
+            font-family: var(--display);
+            font-size: 0.98rem;
+            font-weight: 600;
+            color: var(--branco);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .lanc-emp {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--muted);
+        }
+
         /* ===== Seções ===== */
         section {
             padding: 92px 0;
@@ -876,6 +989,17 @@
         </div>
     </header>
 
+    <!-- Lançamentos em destaque -->
+    <section class="lancamentos" id="lancamentos" hidden>
+        <div class="container">
+            <div class="lanc-head">
+                <span class="lanc-label"><i class="live-dot"></i>últimos lançamentos</span>
+                <a class="lanc-all" href="https://ainews.inteligenciamilgrau.com.br/">ver todos →</a>
+            </div>
+            <div class="lanc-grid" id="lanc-destaque"></div>
+        </div>
+    </section>
+
     <!-- Comunidade -->
     <section id="comunidade">
         <div class="container">
@@ -1122,18 +1246,61 @@
         fetch('https://raw.githubusercontent.com/inteligenciamilgrau/ainews/main/data/models.json')
             .then(r => r.json())
             .then(data => {
-                const ul = document.getElementById('top5-lancamentos');
-                if (!ul) return;
-                (data.models || [])
+                const top = (data.models || [])
                     .filter(m => m.release_date && m.model)
                     .sort((a, b) => b.release_date.localeCompare(a.release_date))
-                    .slice(0, 5)
-                    .forEach(m => {
-                        const [, mes, dia] = m.release_date.split('-');
+                    .slice(0, 5);
+                if (!top.length) return;
+
+                const fmt = d => { const [, mes, dia] = d.split('-'); return `${dia}/${mes}`; };
+
+                // Mostrador em destaque no topo
+                const grid = document.getElementById('lanc-destaque');
+                if (grid) {
+                    top.forEach(m => {
+                        const a = document.createElement('a');
+                        a.className = 'lanc-item';
+                        a.href = 'https://ainews.inteligenciamilgrau.com.br/';
+                        const dt = document.createElement('span');
+                        dt.className = 'lanc-date';
+                        dt.textContent = fmt(m.release_date);
+                        const nome = document.createElement('span');
+                        nome.className = 'lanc-nome';
+                        nome.textContent = m.model;
+                        nome.title = m.model;
+                        const emp = document.createElement('span');
+                        emp.className = 'lanc-emp';
+                        emp.textContent = m.company;
+                        a.append(dt, nome, emp);
+                        grid.appendChild(a);
+                    });
+                    document.getElementById('lancamentos').hidden = false;
+
+                    // Holofote alternando de card em card
+                    const cards = Array.from(grid.children);
+                    if (cards.length > 1 && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                        let atual = 0;
+                        let pausado = false;
+                        grid.addEventListener('mouseenter', () => { pausado = true; });
+                        grid.addEventListener('mouseleave', () => { pausado = false; });
+                        cards[atual].classList.add('destaque');
+                        setInterval(() => {
+                            if (pausado) return;
+                            cards[atual].classList.remove('destaque');
+                            atual = (atual + 1) % cards.length;
+                            cards[atual].classList.add('destaque');
+                        }, 2600);
+                    }
+                }
+
+                // Lista no card da comunidade
+                const ul = document.getElementById('top5-lancamentos');
+                if (ul) {
+                    top.forEach(m => {
                         const li = document.createElement('li');
                         const dt = document.createElement('span');
                         dt.className = 't5-date';
-                        dt.textContent = `${dia}/${mes}`;
+                        dt.textContent = fmt(m.release_date);
                         const nome = document.createElement('span');
                         nome.className = 't5-name';
                         nome.textContent = m.model;
@@ -1143,8 +1310,9 @@
                         li.append(dt, nome, co);
                         ul.appendChild(li);
                     });
+                }
             })
-            .catch(() => { /* sem lista, card fica como antes */ });
+            .catch(() => { /* sem dados, seção fica oculta e card fica como antes */ });
     </script>
 
 </body>
