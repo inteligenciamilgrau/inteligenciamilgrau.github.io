@@ -282,15 +282,14 @@
         .bento {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1px;
-            background: var(--linha);
-            border: 1px solid var(--linha);
-            border-radius: 10px;
-            overflow: hidden;
+            gap: 18px;
         }
 
         .cell {
             background: var(--bg);
+            border: 1px solid var(--linha);
+            border-radius: 10px;
+            overflow: hidden;
             padding: 30px 28px 26px;
             text-decoration: none;
             position: relative;
@@ -298,11 +297,12 @@
             flex-direction: column;
             gap: 8px;
             min-height: 185px;
-            transition: background 0.25s ease;
+            transition: background 0.25s ease, border-color 0.25s ease;
         }
 
         .cell:hover {
             background: var(--bg-card);
+            border-color: var(--linha-forte);
         }
 
         .cell-idx {
@@ -757,7 +757,8 @@
             .cell-thumb {
                 align-self: auto;
                 width: calc(100% + 56px);
-                height: 190px;
+                height: auto;
+                aspect-ratio: 1 / 1;
                 margin: -34px -28px 0;
             }
 
