@@ -139,6 +139,20 @@
             position: relative;
         }
 
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: auto;
+            mask-image: radial-gradient(ellipse 72% 72% at 50% 50%, black 40%, transparent 92%);
+            -webkit-mask-image: radial-gradient(ellipse 72% 72% at 50% 50%, black 40%, transparent 92%);
+        }
+
         .eyebrow {
             font-family: var(--mono);
             font-size: 0.8rem;
@@ -689,6 +703,11 @@
 
         /* ===== Responsivo ===== */
         @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
             .bento {
                 grid-template-columns: 1fr 1fr;
             }
@@ -813,11 +832,15 @@
 
     <!-- Hero -->
     <header class="hero">
-        <div class="container">
-            <div class="eyebrow">canal de inteligência artificial</div>
-            <h1>Inteligência<br><em>Mil Grau</em><span class="cursor"></span></h1>
-            <p class="hero-desc">Tutoriais, entrevistas e projetos práticos de Inteligência Artificial para
-                transformar o futuro.</p>
+        <div class="container hero-grid">
+            <div>
+                <div class="eyebrow">canal de inteligência artificial</div>
+                <h1>Inteligência<br><em>Mil Grau</em><span class="cursor"></span></h1>
+                <p class="hero-desc">Tutoriais, entrevistas e projetos práticos de Inteligência Artificial para
+                    transformar o futuro.</p>
+            </div>
+            <img class="hero-img" src="assets/images/apresentador.png"
+                alt="Apresentador do Inteligência Mil Grau com fones de ouvido e microfone, cercado por nomes de IAs">
         </div>
     </header>
 
