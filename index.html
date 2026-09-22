@@ -234,6 +234,47 @@
             border-color: var(--branco);
         }
 
+        /* ===== Chamada dos desafios ===== */
+        .desafios-chamada {
+            padding: 26px 0 34px;
+        }
+
+        .desafios-chamada-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 25px 30px;
+            border: 1px solid var(--linha-forte);
+            border-radius: 12px;
+            background: linear-gradient(110deg, rgba(62, 230, 120, 0.1), transparent 65%), var(--bg-card);
+        }
+
+        .desafios-chamada .tag {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--verde);
+            font: 0.72rem var(--mono);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .desafios-chamada h2 {
+            color: var(--branco);
+            font: 700 clamp(1.35rem, 2.4vw, 1.8rem) var(--display);
+            line-height: 1.2;
+        }
+
+        .desafios-chamada p {
+            margin-top: 6px;
+            color: var(--texto);
+            font-size: 0.9rem;
+        }
+
+        .desafios-chamada .btn {
+            flex-shrink: 0;
+        }
+
         /* ===== Lançamentos em destaque ===== */
         .lancamentos {
             padding: 4px 0 30px;
@@ -886,6 +927,12 @@
                 display: none;
             }
 
+            .desafios-chamada-inner {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 24px;
+            }
+
             section {
                 padding: 68px 0;
             }
@@ -990,6 +1037,20 @@
                 alt="Apresentador do Inteligência Mil Grau com fones de ouvido e microfone, cercado por nomes de IAs">
         </div>
     </header>
+
+    <!-- Desafios -->
+    <section class="desafios-chamada" aria-labelledby="desafios-titulo">
+        <div class="container">
+            <div class="desafios-chamada-inner">
+                <div>
+                    <span class="tag">// desafios abertos</span>
+                    <h2 id="desafios-titulo">Até onde a IA pode chegar?</h2>
+                    <p>Seis ideias para explorar. Temas e critérios ainda estão abertos a melhorias e novas propostas.</p>
+                </div>
+                <a class="btn btn-solid" href="desafios/">Conhecer os desafios →</a>
+            </div>
+        </div>
+    </section>
 
     <!-- Lançamentos em destaque -->
     <section class="lancamentos" id="lancamentos" hidden>
@@ -1218,6 +1279,7 @@
                     <a href="https://inteligenciamilgrau.github.io/projetobrasilia/">Projeto Brasil IA</a>
                     <a href="https://atlas.inteligenciamilgrau.com.br/">Atlas do Brasil</a>
                     <a href="https://inteligenciamilgrau.github.io/psicologika/">Livro PsicoLógika</a>
+                    <a href="desafios/">Desafios de IA</a>
                 </div>
                 <div class="footer-col">
                     <h4>Canais</h4>
