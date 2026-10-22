@@ -8,12 +8,12 @@ Site oficial do canal [Inteligência Mil Grau](https://www.youtube.com/inteligen
 
 Página inicial da comunidade IMG², reunindo todos os projetos e canais:
 
-- [Trilhas e Cursos](https://inteligenciamilgrau.github.io/trilhas/) — aprenda IA passo a passo, do zero
-- [Jogos com IA](https://inteligenciamilgrau.github.io/jogoscomia/) — games criados com IA
+- [Trilhas e Cursos](https://trilhas.inteligenciamilgrau.com.br/) — aprenda IA passo a passo, do zero
+- [Jogos com IA](https://jogoscomia.inteligenciamilgrau.com.br/) — games criados com IA
 - [Modelos de IA Liberados](https://ainews.inteligenciamilgrau.com.br/) — os modelos mais recentes
-- [Projeto Brasil IA](https://inteligenciamilgrau.github.io/projetobrasilia/) — IA para o desenvolvimento do Brasil
+- [Projeto Brasil IA](https://brasilia.inteligenciamilgrau.com.br/) — IA para o desenvolvimento do Brasil
 - [Atlas do Brasil](https://atlas.inteligenciamilgrau.com.br/) — dados e mapas do Brasil
-- [Livro PsicoLógika](https://inteligenciamilgrau.github.io/psicologika/) — leia o livro online
+- [Livro PsicoLógika](https://psicologika.inteligenciamilgrau.com.br/) — leia o livro online
 - [Canal no YouTube](https://www.youtube.com/inteligenciamilgrau) — vídeos e tutoriais
 
 ## Estrutura
